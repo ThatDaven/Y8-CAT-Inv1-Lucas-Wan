@@ -82,6 +82,7 @@ def calculate_distance(point1, point2):
 
 #Part 2.1 to 2.4: 
 import random
+import math
 
 # 2.1 Representing Entities with Dictionaries
 player_one = {
@@ -109,24 +110,33 @@ destination = {
 def place_entities():
     for entity in [player_one, player_two, destination]:
         entity['coordinates'] = [random.randint(-800, 800), random.randint(-800, 800)]
-        
+
 # 2.3 Calculating Distance, Midpoint, and Gradient
-# Implement functions to calculate distance, midpoint, and gradient
-import math
 # Function to calculate distance between two points
 def calculate_distance(point1, point2):
     return math.sqrt((point2[0] - point1[0]) ** 2 + (point2[1] - point1[1]) ** 2)
+
 # Function to calculate midpoint between two points
 def calculate_midpoint(point1, point2):
     midpoint_x = (point1[0] + point2[0]) / 2
     midpoint_y = (point1[1] + point2[1]) / 2
     return [midpoint_x, midpoint_y]
+
 # Function to calculate gradient between two points
 def calculate_gradient(point1, point2):
     if point2[0] - point1[0] == 0:
         return float('inf')
     else:
         return (point2[1] - point1[1]) / (point2[0] - point1[0])
+
+# Update player dictionaries with calculated values
+def update_player_info():
+    player_one['distance_to_destination'] = calculate_distance(player_one['coordinates'], destination['coordinates'])
+    player_two['distance_to_destination'] = calculate_distance(player_two['coordinates'], destination['coordinates'])
+    player_one['midpoint_with_player_two'] = calculate_midpoint(player_one['coordinates'], player_two['coordinates'])
+    player_two['midpoint_with_player_one'] = calculate_midpoint(player_one['coordinates'], player_two['coordinates'])
+    player_one['gradient_with_destination'] = calculate_gradient(player_one['coordinates'], destination['coordinates'])
+    player_two['gradient_with_destination'] = calculate_gradient(player_two['coordinates'], destination['coordinates'])
 
 # 2.4 Displaying Information
 def print_player_info(player):
@@ -149,8 +159,10 @@ def print_player_info(player):
 
 # Example usage
 place_entities()
+update_player_info()
 print_player_info(player_one)
 print_player_info(player_two)
 print(f"Destination Location: ({destination['coordinates'][0]}, {destination['coordinates'][1]})")
+
 
 
