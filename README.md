@@ -15,7 +15,7 @@ To achieve translations on the Cartesian plane according to the specified direct
 2. Input Validation: Validate input data to ensure it meets the specified criteria. For example, we'll reject negative lengths and directions beyond the range of 1 to 8.
 3. Custom Implementation: Instead of relying on built-in libraries like math, have own versions of functions to perform required operations. For instance, if distance calculation is needed, we'll implement our own function instead of using math.dist().
 
-    # Example usage of input validation and distance calculation
+    Example usage of input validation and distance calculation
     point1 = (2, -4)
     point2 = (-5, 3)
     if validate_distance(calculate_distance(point1, point2)):
@@ -23,7 +23,7 @@ To achieve translations on the Cartesian plane according to the specified direct
     else:
        print("Invalid distance.")
 
-    # Example of validating direction
+    Example of validating direction
     direction = 10
     if validate_direction(direction):
         print("Valid direction.")
@@ -32,14 +32,14 @@ To achieve translations on the Cartesian plane according to the specified direct
 
 
 # Part 2.1 to 2.4:
-    2.1 Representing Entities with Dictionaries
-    Create dictionaries for player_one, player_two, and destination, encapsulating relevant information about each entity, such as current coordinates, distance from the destination, midpoint coordinates to the other player, gradient with the destination, and personal space buffer.
+2.1 Representing Entities with Dictionaries
+Create dictionaries for player_one, player_two, and destination, encapsulating relevant information about each entity, such as current coordinates, distance from the destination, midpoint coordinates to the other player, gradient with the destination, and personal space buffer.
 
-    2.2 Randomly Placing Entities
-    Using the Python random module, generate random integer coordinates within the range of -800 to +800 for player_one, player_two, and destination, and store them in their respective dictionaries.
+2.2 Randomly Placing Entities
+Using the Python random module, generate random integer coordinates within the range of -800 to +800 for player_one, player_two, and destination, and store them in their respective dictionaries.
 
-    2.3 Calculating Distance, Midpoint, and Gradient
-    Create functions to calculate the distance and gradient of each player to the destination, as well as the midpoint coordinates between the players. These functions will utilize custom implementations without relying on external modules.
+2.3 Calculating Distance, Midpoint, and Gradient
+Create functions to calculate the distance and gradient of each player to the destination, as well as the midpoint coordinates between the players. These functions will utilize custom implementations without relying on external modules.
 
-    2.4 Displaying Information
-    Functions will be created to print information about each player and the destination, including their coordinates, distance to the destination, gradient with the destination, and midpoint coordinates with the other player. Aiming to reuse one function for printing player information to ensure modularity and consistency.
+2.4 Displaying Information
+Functions will be created to print information about each player and the destination, including their coordinates, distance to the destination, gradient with the destination, and midpoint coordinates with the other player. Aiming to reuse one function for printing player information to ensure modularity and consistency.
