@@ -15,7 +15,7 @@ To achieve translations on the Cartesian plane according to the specified direct
 2. Input Validation: Validate input data to ensure it meets the specified criteria. For example, we'll reject negative lengths and directions beyond the range of 1 to 8.
 3. Custom Implementation: Instead of relying on built-in libraries like math, have own versions of functions to perform required operations. For instance, if distance calculation is needed, we'll implement our own function instead of using math.dist().
 
-    Example usage of input validation and distance calculation
+    # Example usage of input validation and distance calculation
     point1 = (2, -4)
     point2 = (-5, 3)
     if validate_distance(calculate_distance(point1, point2)):
@@ -23,7 +23,7 @@ To achieve translations on the Cartesian plane according to the specified direct
     else:
        print("Invalid distance.")
 
-    Example of validating direction
+    # Example of validating direction
     direction = 10
     if validate_direction(direction):
         print("Valid direction.")
