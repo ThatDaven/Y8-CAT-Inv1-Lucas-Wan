@@ -109,9 +109,24 @@ destination = {
 def place_entities():
     for entity in [player_one, player_two, destination]:
         entity['coordinates'] = [random.randint(-800, 800), random.randint(-800, 800)]
-
+        
 # 2.3 Calculating Distance, Midpoint, and Gradient
 # Implement functions to calculate distance, midpoint, and gradient
+import math
+# Function to calculate distance between two points
+def calculate_distance(point1, point2):
+    return math.sqrt((point2[0] - point1[0]) ** 2 + (point2[1] - point1[1]) ** 2)
+# Function to calculate midpoint between two points
+def calculate_midpoint(point1, point2):
+    midpoint_x = (point1[0] + point2[0]) / 2
+    midpoint_y = (point1[1] + point2[1]) / 2
+    return [midpoint_x, midpoint_y]
+# Function to calculate gradient between two points
+def calculate_gradient(point1, point2):
+    if point2[0] - point1[0] == 0:
+        return float('inf')
+    else:
+        return (point2[1] - point1[1]) / (point2[0] - point1[0])
 
 # 2.4 Displaying Information
 def print_player_info(player):
@@ -120,13 +135,22 @@ def print_player_info(player):
     print(f"Gradient with Destination: {player['gradient_with_destination']}")
     # Check if the 'midpoint_with_player_one' or 'midpoint_with_player_two' key exists
     if 'midpoint_with_player_one' in player:
-        print(f"Midpoint with Other Player: ({player['midpoint_with_player_one'][0]}, {player['midpoint_with_player_one'][1]})")
+        midpoint = player['midpoint_with_player_one']
+        if midpoint is not None:
+            print(f"Midpoint with Other Player: ({midpoint[0]}, {midpoint[1]})")
+        else:
+            print("No midpoint with other player")
     elif 'midpoint_with_player_two' in player:
-        print(f"Midpoint with Other Player: ({player['midpoint_with_player_two'][0]}, {player['midpoint_with_player_two'][1]})")
+        midpoint = player['midpoint_with_player_two']
+        if midpoint is not None:
+            print(f"Midpoint with Other Player: ({midpoint[0]}, {midpoint[1]})")
+        else:
+            print("No midpoint with other player")
 
 # Example usage
 place_entities()
 print_player_info(player_one)
 print_player_info(player_two)
 print(f"Destination Location: ({destination['coordinates'][0]}, {destination['coordinates'][1]})")
+
 
