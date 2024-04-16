@@ -43,3 +43,11 @@ Create functions to calculate the distance and gradient of each player to the de
 
 2.4 Displaying Information
 Functions will be created to print information about each player and the destination, including their coordinates, distance to the destination, gradient with the destination, and midpoint coordinates with the other player. Aiming to reuse one function for printing player information to ensure modularity and consistency.
+
+
+    # Example of entities, functions and printing
+        place_entities()
+        update_player_info()
+        print(f"Destination Location: ({destination['coordinates'][0]}, {destination['coordinates'][1]})")
+        print_player_info(player_one)
+        print_player_info(player_two)

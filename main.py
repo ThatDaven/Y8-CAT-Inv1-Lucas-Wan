@@ -157,12 +157,7 @@ def print_player_info(player):
         else:
             print("No midpoint with other player")
 
-# Example usage
-place_entities()
-update_player_info()
-print_player_info(player_one)
-print_player_info(player_two)
-print(f"Destination Location: ({destination['coordinates'][0]}, {destination['coordinates'][1]})")
+
 
 
 
