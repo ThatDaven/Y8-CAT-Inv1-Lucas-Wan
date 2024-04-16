@@ -11,9 +11,9 @@ To achieve translations on the Cartesian plane according to the specified direct
 
 
 # Part 1.2:  Use functions, validate input and document imports (10 Marks)
-1. Function Usage: Ensure that all operations, calculations, and functionalities are encapsulated within functions. This promotes modularity, readability, and reusability of code.
-2. Input Validation: Validate input data to ensure it meets the specified criteria. For example, we'll reject negative lengths and directions beyond the range of 1 to 8.
-3. Custom Implementation: Instead of relying on built-in libraries like math, have own versions of functions to perform required operations. For instance, if distance calculation is needed, we'll implement our own function instead of using math.dist().
+Function Usage: Ensure that all operations, calculations, and functionalities are encapsulated within functions. This promotes modularity, readability, and reusability of code.
+Input Validation: Validate input data to ensure it meets the specified criteria. For example, we'll reject negative lengths and directions beyond the range of 1 to 8.
+Custom Implementation: Instead of relying on built-in libraries like math, have own versions of functions to perform required operations. For instance, if distance calculation is needed, we'll implement our own function instead of using math.dist().
 
     Example usage of input validation and distance calculation
         point1 = (2, -4)
