@@ -44,7 +44,7 @@ def translate_player(distance, direction):
 def validate_distance(distance):
     """
     Validate the input distance.
-    
+
     Args:
     - distance (int): The distance to validate.
     
@@ -156,8 +156,3 @@ def print_player_info(player):
             print(f"Midpoint with Other Player: ({midpoint[0]}, {midpoint[1]})")
         else:
             print("No midpoint with other player")
-
-
-
-
-
