@@ -15,20 +15,20 @@ To achieve translations on the Cartesian plane according to the specified direct
 2. Input Validation: Validate input data to ensure it meets the specified criteria. For example, we'll reject negative lengths and directions beyond the range of 1 to 8.
 3. Custom Implementation: Instead of relying on built-in libraries like math, have own versions of functions to perform required operations. For instance, if distance calculation is needed, we'll implement our own function instead of using math.dist().
 
-    # Example usage of input validation and distance calculation
-    point1 = (2, -4)
-    point2 = (-5, 3)
-    if validate_distance(calculate_distance(point1, point2)):
-       print("Distance:", calculate_distance(point1, point2))
-    else:
-       print("Invalid distance.")
+    Example usage of input validation and distance calculation
+        point1 = (2, -4)
+        point2 = (-5, 3)
+        if validate_distance(calculate_distance(point1, point2)):
+        print("Distance:", calculate_distance(point1, point2))
+        else:
+        print("Invalid distance.")
 
-    # Example of validating direction
-    direction = 10
-    if validate_direction(direction):
-        print("Valid direction.")
-    else:
-        print("Invalid direction.")
+    Example of validating direction
+        direction = 10
+        if validate_direction(direction):
+         print("Valid direction.")
+        else:
+          print("Invalid direction.")
 
 
 # Part 2.1 to 2.4:
@@ -45,7 +45,7 @@ Create functions to calculate the distance and gradient of each player to the de
 Functions will be created to print information about each player and the destination, including their coordinates, distance to the destination, gradient with the destination, and midpoint coordinates with the other player. Aiming to reuse one function for printing player information to ensure modularity and consistency.
 
 
-    # Example of entities, functions and printing
+    Example of entities, functions and printing
         place_entities()
         update_player_info()
         print(f"Destination Location: ({destination['coordinates'][0]}, {destination['coordinates'][1]})")
