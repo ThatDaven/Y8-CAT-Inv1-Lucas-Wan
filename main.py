@@ -81,41 +81,52 @@ def calculate_distance(point1, point2):
 ##########################################################################################################################################################################
 
 #Part 2.1 to 2.4: 
-import random #Only for generating random points of positions as seen in line 107
+import random
+
 # 2.1 Representing Entities with Dictionaries
 player_one = {
     'coordinates': [0, 0],
     'distance_to_destination': None,
-    'midpoint_with_player_two': None,
+    'midpoint_with_player_two': None,  # Change this key
     'gradient_with_destination': None,
     'personal_space_buffer': 10
 }
+
 player_two = {
     'coordinates': [0, 0],
     'distance_to_destination': None,
-    'midpoint_with_player_one': None,
+    'midpoint_with_player_one': None,  # Change this key
     'gradient_with_destination': None,
     'personal_space_buffer': 10
 }
+
 destination = {
     'coordinates': [0, 0],
     'personal_space_buffer': 10
 }
+
 # 2.2 Randomly Placing Entities
 def place_entities():
     for entity in [player_one, player_two, destination]:
         entity['coordinates'] = [random.randint(-800, 800), random.randint(-800, 800)]
+
 # 2.3 Calculating Distance, Midpoint, and Gradient
 # Implement functions to calculate distance, midpoint, and gradient
+
 # 2.4 Displaying Information
 def print_player_info(player):
     print(f"Player Location: ({player['coordinates'][0]}, {player['coordinates'][1]})")
     print(f"Distance to Destination: {player['distance_to_destination']} units")
     print(f"Gradient with Destination: {player['gradient_with_destination']}")
-    print(f"Midpoint with Other Player: ({player['midpoint_with_player_one'][0]}, {player['midpoint_with_player_one'][1]})")
-    
+    # Check if the 'midpoint_with_player_one' or 'midpoint_with_player_two' key exists
+    if 'midpoint_with_player_one' in player:
+        print(f"Midpoint with Other Player: ({player['midpoint_with_player_one'][0]}, {player['midpoint_with_player_one'][1]})")
+    elif 'midpoint_with_player_two' in player:
+        print(f"Midpoint with Other Player: ({player['midpoint_with_player_two'][0]}, {player['midpoint_with_player_two'][1]})")
+
 # Example usage
 place_entities()
 print_player_info(player_one)
 print_player_info(player_two)
 print(f"Destination Location: ({destination['coordinates'][0]}, {destination['coordinates'][1]})")
+
