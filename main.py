@@ -161,12 +161,39 @@ def print_player_info(player):
 def check_winner(player):
     """
     Check if a player has reached the destination's personal space buffer.
-
     Args:
     - player (dict): The player dictionary containing coordinates and personal space buffer.
-
     Returns:
     - bool: True if the player has reached the destination's personal space buffer, False otherwise.
     """
     distance_to_destination = calculate_distance(player['coordinates'], destination['coordinates'])
     return distance_to_destination <= player['personal_space_buffer']
+
+# Part 3.2: Move players along the hypotenuse of a right-angled triangle
+def move_player(player, distance, direction):
+    """
+    Move a player along the hypotenuse of a right-angled triangle by the specified distance and direction.
+    Args:
+    - player (dict): The player dictionary to be moved.
+    - distance (int): The requested distance to move.
+    - direction (int): The direction of movement (1 to 8).
+    Returns:
+    - tuple: A tuple representing the actual translation vector (dx, dy) applied to the player.
+    """
+    # Retrieve the corresponding Pythagorean triple from the lookup table
+    pythagorean_triple = pythagorean_triples[direction - 1]
+
+    # Calculate the maximum available distance along the hypotenuse
+    max_available_distance = pythagorean_triple[2]
+
+    # Adjust the requested distance if necessary to match the available hypotenuse length
+    actual_distance = min(distance, max_available_distance)
+
+    # Translate the player based on the Pythagorean triple
+    translation = translate_player(actual_distance, direction)
+
+    # Update player coordinates
+    player['coordinates'][0] += translation[0]
+    player['coordinates'][1] += translation[1]
+
+    return translation
