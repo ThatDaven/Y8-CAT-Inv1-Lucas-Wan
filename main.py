@@ -260,3 +260,29 @@ def calculate_distance(point1, point2):
     x1, y1 = point1
     x2, y2 = point2
     return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)  # Euclidean distance formula
+
+def move_npc():
+    """
+    Move the NPC (player three) based on the calculated optimal move.
+    """
+    # Calculate distance to destination
+    player_three['distance_to_destination'] = calculate_distance(player_three['coordinates'], destination['coordinates'])
+    
+    # Evaluate movement options (hypotenuses of right-angled triangles)
+    optimal_move = None
+    min_distance = float('inf')
+    
+    for direction in range(1, 9):
+        pythagorean_triple = pythagorean_triples[direction - 1]
+        max_available_distance = pythagorean_triple[2]
+        actual_distance = min(max_available_distance, player_three['distance_to_destination'])
+        if actual_distance < min_distance:
+            min_distance = actual_distance
+            optimal_move = direction
+    
+    # Execute optimal move
+    actual_translation = move_player(player_three, min_distance, optimal_move)
+    print(f"NPC (Player Three) moved by {actual_translation}.")
+
+# Example usage of moving the NPC
+move_npc()
