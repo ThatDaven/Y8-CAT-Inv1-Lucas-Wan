@@ -354,4 +354,35 @@ destination = {
 
 app_surf, app_surf_rect = create_app_window(800, 800)
 
+initialise_entities()
+
+print('\nThree entities initialised... here is a raw printout of their dictionaries')
+print(destination)
+print(player_one)
+print(player_two)
+print('\nLEFT click inside the window to make player ONE move')
+print('RIGHT click inside the window to make player TWO move')
+print('You might need to first click the window to select it, then L/R click to make a move')
+
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            left_button, _, right_button = pygame.mouse.get_pressed()
+            if left_button:
+                requested_x, requested_y = input("Enter new coordinates for Player ONE: e.g. 60, -155: ").split(",")
+                requested_x = int(requested_x)
+                requested_y = int(requested_y)
+                player_one['cartesian_coords'] = (requested_x, requested_y)
+                player_one['pygame_coords'] = conv_cartesian_to_pygame_coords(requested_x, requested_y)
+            if right_button:
+                requested_x, requested_y = input("Enter new coordinates for Player TWO: e.g. 60, -155: ").split(",")
+                requested_x = int(requested_x)
+                requested_y = int(requested_y)
+                player_two['cartesian_coords'] = (requested_x, requested_y)
+                player_two['pygame_coords'] = conv_cartesian_to_pygame_coords(requested_x, requested_y)
+    app_surf_update(destination, player_one, player_two)
+    refresh_window()
 
