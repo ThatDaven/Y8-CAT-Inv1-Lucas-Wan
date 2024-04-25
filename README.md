@@ -51,3 +51,21 @@ Functions will be created to print information about each player and the destina
         print(f"Destination Location: ({destination['coordinates'][0]}, {destination['coordinates'][1]})")
         print_player_info(player_one)
         print_player_info(player_two)
+
+
+# Part 3.1 to 3.2: (10 Marks)
+First integrate the necessary functionality into the existing codebase. We'll focus on implementing functions to check for a winner based on reaching the destination's personal space buffer and to move players along the hypotenuse of a right-angled triangle.
+
+check_winner() function checks if a player has reached the destination's personal space buffer.
+move_player() function moves a player along the hypotenuse of a right-angled triangle by the specified distance and direction.
+update_game_state() function updates the game state after each move, including checking for a winner.
+
+An example usage demonstrates how to move a player and update the game state accordingly.
+
+    Example of winning conditions
+        # Example usage of moving a player
+        move_distance = 15
+        move_direction = 2
+        actual_translation = move_player(player_one, move_distance, move_direction)
+        print(f"Player One moved by {actual_translation}.")
+        update_game_state()
