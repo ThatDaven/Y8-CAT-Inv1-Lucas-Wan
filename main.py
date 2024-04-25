@@ -114,31 +114,31 @@ def place_entities():
 # 2.3 Calculating Distance, Midpoint, and Gradient
 # Function to calculate distance between two points
 def calculate_distance(point1, point2):
-    return math.sqrt((point2[0] - point1[0]) ** 2 + (point2[1] - point1[1]) ** 2)
+    return round(math.sqrt((point2[0] - point1[0]) ** 2 + (point2[1] - point1[1]) ** 2),1)
 
 # Function to calculate midpoint between two points
 def calculate_midpoint(point1, point2):
     midpoint_x = (point1[0] + point2[0]) / 2
     midpoint_y = (point1[1] + point2[1]) / 2
-    return [midpoint_x, midpoint_y]
+    return [round(midpoint_x,1), round(midpoint_y,1)]
 
 # Function to calculate gradient between two points
 def calculate_gradient(point1, point2):
     if point2[0] - point1[0] == 0:
-        return float('inf')
+        return round(float('inf'),1)
     else:
-        return (point2[1] - point1[1]) / (point2[0] - point1[0])
+        return round((point2[1] - point1[1]) / (point2[0] - point1[0]),1)
 
 # Update player dictionaries with calculated values
 def update_player_info():
-    player_one['distance_to_destination'] = calculate_distance(player_one['coordinates'], destination['coordinates'])
-    player_two['distance_to_destination'] = calculate_distance(player_two['coordinates'], destination['coordinates'])
+    player_one['distance_to_destination'] = round(calculate_distance(player_one['coordinates'], destination['coordinates']),1)
+    player_two['distance_to_destination'] = round(calculate_distance(player_two['coordinates'], destination['coordinates']),1)
     player_one['midpoint_with_player_two'] = calculate_midpoint(player_one['coordinates'], player_two['coordinates'])
     player_two['midpoint_with_player_one'] = calculate_midpoint(player_one['coordinates'], player_two['coordinates'])
     player_one['gradient_with_destination'] = calculate_gradient(player_one['coordinates'], destination['coordinates'])
     player_two['gradient_with_destination'] = calculate_gradient(player_two['coordinates'], destination['coordinates'])
     player_three['gradient_with_destination'] = calculate_gradient(player_one['coordinates'], destination['coordinates'])
-    player_three['distance_to_destination'] = calculate_distance(player_two['coordinates'], destination['coordinates'])
+    player_three['distance_to_destination'] = round(calculate_distance(player_two['coordinates'], destination['coordinates']),1)
 
 # 2.4 Displaying Information
 def print_player_info(player):
@@ -320,6 +320,8 @@ print("Player One's Information:")
 print_player_info(player_one)
 print("\nPlayer Two's Information:")
 print_player_info(player_two)
+print("\nNPC's Information:")
+print_player_info(player_three)
 print("\nDestination Location:", destination['coordinates'])
 
 # Game Loop
