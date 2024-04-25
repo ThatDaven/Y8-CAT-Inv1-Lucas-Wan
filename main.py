@@ -365,3 +365,18 @@ while True:
             break
     else:
         print("Invalid direction. Please enter a valid direction.")
+
+    # NPC (Player Three) Turn
+    print("\nNPC's Turn:")
+    move_npc()
+    update_game_state()  # Update game state
+    print("\nUpdated Game State after NPC's Turn:")
+    print("Player One's Information:")
+    print_player_info(player_one)
+    print("\nPlayer Two's Information:")
+    print_player_info(player_two)
+    print("\nNPC's Information:")
+    print_player_info(player_three)
+    print("\nDestination Location:", destination['coordinates'])
+    if check_winner(player_three):
+        break
