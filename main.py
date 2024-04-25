@@ -108,7 +108,7 @@ destination = {
 
 # 2.2 Randomly Placing Entities
 def place_entities():
-    for entity in [player_one, player_two, destination]:
+    for entity in [player_one, player_two, player_three,destination]:
         entity['coordinates'] = [random.randint(-800, 800), random.randint(-800, 800)]
 
 # 2.3 Calculating Distance, Midpoint, and Gradient
@@ -137,6 +137,8 @@ def update_player_info():
     player_two['midpoint_with_player_one'] = calculate_midpoint(player_one['coordinates'], player_two['coordinates'])
     player_one['gradient_with_destination'] = calculate_gradient(player_one['coordinates'], destination['coordinates'])
     player_two['gradient_with_destination'] = calculate_gradient(player_two['coordinates'], destination['coordinates'])
+    player_three['gradient_with_destination'] = calculate_gradient(player_one['coordinates'], destination['coordinates'])
+    player_three['distance_to_destination'] = calculate_distance(player_two['coordinates'], destination['coordinates'])
 
 # 2.4 Displaying Information
 def print_player_info(player):
@@ -233,7 +235,8 @@ def move_player_with_time_limit(player, distance, direction, time_limit=10): #Se
         print("Player exceeded time limit. Choosing random move.") #Gives random moves to not disadvantage the player. Losing a turn is too harsh and too hard to code.
         random_direction = random.randint(1, 8)
         random_distance = random.randint(1, pythagorean_triples[random_direction - 1][2])
-        translation = move_player(player, random_distance, random_direction) #This is the only function of the random library to give a random move. (besides generating random placements in earlier part 2.2)
+        translation = move_player(player, random_distance, random_direction) #This is the only function of the random library to give a random move. 
+        #(besides generating random placements in earlier part 2.2)
 
     return translation
 
@@ -285,4 +288,36 @@ def move_npc():
     actual_translation = move_player(player_three, min_distance, optimal_move)
     print(f"NPC (Player Three) moved by {actual_translation}.")
 
-#Part 4.3: Visual Part:
+#Game
+# Define the directions
+directions = {
+    'Up': 1,
+    'Down': 2,
+    'Left': 3,
+    'Right': 4,
+    'Diagonal Up Right': 5,
+    'Diagonal Up Left': 6,
+    'Diagonal Down Right': 7,
+    'Diagonal Down Left': 8
+}
+
+# Initialize the game
+place_entities()  # Randomly place players and destination
+update_player_info()  # Update initial player information
+
+# Inform players about the game setup
+print("Welcome to the Destination Race Game!")
+print("The game setup is as follows:")
+print(f"- Destination Location: {destination['coordinates']}")
+print(f"- Player One Starting Position: {player_one['coordinates']}")
+print(f"- Player Two Starting Position: {player_two['coordinates']}")
+print(f"- NPC (Player Three) Starting Position: {player_three['coordinates']}")
+print("Let's begin!\n")
+
+# Display initial game state
+print("Initial Game State:")
+print("Player One's Information:")
+print_player_info(player_one)
+print("\nPlayer Two's Information:")
+print_player_info(player_two)
+print("\nDestination Location:", destination['coordinates'])
