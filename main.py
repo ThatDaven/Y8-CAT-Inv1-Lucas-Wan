@@ -358,14 +358,6 @@ def random_move(player):
     player['cartesian_coords'] = (rand_x, rand_y)
     player['pygame_coords'] = conv_cartesian_to_pygame_coords(rand_x, rand_y)
 
-def npc_move(player, destination):
-    angle = math.atan2(destination['pygame_coords'][1] - player['pygame_coords'][1], destination['pygame_coords'][0] - player['pygame_coords'][0])
-    move_distance = random.randint(20, 50)
-    new_x = player['pygame_coords'][0] + move_distance * math.cos(angle)
-    new_y = player['pygame_coords'][1] + move_distance * math.sin(angle)
-    player['pygame_coords'] = (new_x, new_y)
-    player['cartesian_coords'] = (new_x - app_surf_rect.width / 2, -new_y + app_surf_rect.height / 2)
-
 player_one = {
     'name': 'Player One',
     'cartesian_coords': None,
@@ -419,7 +411,7 @@ while True:
                     player_one['pygame_coords'] = conv_cartesian_to_pygame_coords(requested_x, requested_y)
                     current_turn = switch_turn(current_turn)
                     start_time = pygame.time.get_ticks()
-            elif current_turn == 2:
+            else:
                 _, _, right_button = pygame.mouse.get_pressed()
                 if right_button:
                     requested_x, requested_y = input("Enter new coordinates for Player TWO: e.g. 60, -155: ").split(",")
@@ -429,20 +421,15 @@ while True:
                     player_two['pygame_coords'] = conv_cartesian_to_pygame_coords(requested_x, requested_y)
                     current_turn = switch_turn(current_turn)
                     start_time = pygame.time.get_ticks()
-
-    if current_turn == 1:
-        timer_text = countdown_timer(start_time, time_limit)
-        if timer_text == 0:
+    
+    timer_text = countdown_timer(start_time, time_limit)
+    if timer_text == 0:
+        if current_turn == 1:
             random_move(player_one)
-            current_turn = switch_turn(current_turn)
-            start_time = pygame.time.get_ticks()
-    elif current_turn == 2:
-        timer_text = countdown_timer(start_time, time_limit)
-        if timer_text == 0:
+        else:
             random_move(player_two)
-            current_turn = 0  # NPC's turn
-            start_time = pygame.time.get_ticks()
-            npc_move(player_two, destination)
+        current_turn = switch_turn(current_turn)
+        start_time = pygame.time.get_ticks()
 
     app_surf_update(destination, player_one, player_two, timer_text, current_turn)
     refresh_window()
