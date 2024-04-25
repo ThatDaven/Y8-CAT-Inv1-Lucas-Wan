@@ -321,3 +321,26 @@ print_player_info(player_one)
 print("\nPlayer Two's Information:")
 print_player_info(player_two)
 print("\nDestination Location:", destination['coordinates'])
+
+# Game Loop
+while True:
+    # Human Player One's Turn
+    print("\nPlayer One's Turn:")
+    direction_name = input("Enter direction (Up, Down, Left, Right, Diagonal Up Right, Diagonal Up Left, Diagonal Down Right, Diagonal Down Left): ")
+    direction = directions.get(direction_name)
+    if direction:
+        distance = int(input("Enter distance: "))
+        move_player_with_time_limit(player_one, distance, direction)
+        update_game_state()  # Update game state
+        print("\nUpdated Game State after Player One's Turn:")
+        print("Player One's Information:")
+        print_player_info(player_one)
+        print("\nPlayer Two's Information:")
+        print_player_info(player_two)
+        print("\nNPC's Information:")
+        print_player_info(player_three)
+        print("\nDestination Location:", destination['coordinates'])
+        if check_winner(player_one):
+            break
+    else:
+        print("Invalid direction. Please enter a valid direction.")
