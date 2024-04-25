@@ -306,7 +306,7 @@ place_entities()  # Randomly place players and destination
 update_player_info()  # Update initial player information
 
 # Inform players about the game setup
-print("Welcome to the Destination Race Game!")
+print("Welcome Lucas Wan's Cartesian Game")
 print("The game setup is as follows:")
 print(f"- Destination Location: {destination['coordinates']}")
 print(f"- Player One Starting Position: {player_one['coordinates']}")
@@ -380,3 +380,4 @@ while True:
     print("\nDestination Location:", destination['coordinates'])
     if check_winner(player_three):
         break
+
