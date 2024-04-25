@@ -318,3 +318,40 @@ def conv_cartesian_to_pygame_coords(x, y):
     pygame_y = -y + app_surf_rect.height / 2
     return (pygame_x, pygame_y)
 
+def initialise_entities():
+    p1_rand_x, p1_rand_y = random.randint(-400, 400), random.randint(-400, 400)
+    player_one['cartesian_coords'] = (p1_rand_x, p1_rand_y)
+    player_one['pygame_coords'] = conv_cartesian_to_pygame_coords(p1_rand_x, p1_rand_y)
+
+    p2_rand_x, p2_rand_y = random.randint(-400, 400), random.randint(-400, 400)
+    player_two['cartesian_coords'] = (p2_rand_x, p2_rand_y)
+    player_two['pygame_coords'] = conv_cartesian_to_pygame_coords(p2_rand_x, p2_rand_y)
+
+    dest_rand_x, dest_rand_y = random.randint(-400, 400), random.randint(-400, 400)
+    destination['cartesian_coords'] = (dest_rand_x, dest_rand_y)
+    destination['pygame_coords'] = conv_cartesian_to_pygame_coords(dest_rand_x, dest_rand_y)
+
+player_one = {
+    'name': 'Player One',
+    'cartesian_coords': None,
+    'pygame_coords': None,
+    'colour': 'red',
+}
+
+player_two = {
+    'name': 'Player Two',
+    'cartesian_coords': None,
+    'pygame_coords': None,
+    'colour': 'blue',
+}
+
+destination = {
+    'name': 'Destination',
+    'cartesian_coords': None,
+    'pygame_coords': None,
+    'colour': 'black',
+}
+
+app_surf, app_surf_rect = create_app_window(800, 800)
+
+
