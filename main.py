@@ -207,3 +207,10 @@ def update_game_state():
         print("Player Two has reached the destination and won!")
     else:
         print("No winner yet. Keep playing!")
+
+# Example usage of moving a player
+move_distance = 15
+move_direction = 2
+actual_translation = move_player(player_one, move_distance, move_direction)
+print(f"Player One moved by {actual_translation}.")
+update_game_state()
