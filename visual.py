@@ -4,18 +4,6 @@ import math
 import sys
 from main import *
 
-# Hypotenuse movement function
-def hypotenuse_move(current_position, target_position, speed):
-    dx = target_position[0] - current_position[0]
-    dy = target_position[1] - current_position[1]
-    distance = math.hypot(dx, dy)
-    if distance == 0:
-        return current_position
-    move_x = dx / distance * speed
-    move_y = dy / distance * speed
-    new_position = (current_position[0] + move_x, current_position[1] + move_y)
-    return new_position
-
 # Initialise Pygame
 pygame.init()
 app_clock = pygame.time.Clock()
@@ -49,17 +37,6 @@ def conv_cartesian_to_pygame_coords(x, y):
     pygame_x = x + app_surf_rect.width / 2
     pygame_y = -y + app_surf_rect.height / 2
     return (pygame_x, pygame_y)
-    p1_rand_x, p1_rand_y = random.randint(-400, 400), random.randint(-400, 400)
-    player_one['cartesian_coords'] = (p1_rand_x, p1_rand_y)
-    player_one['pygame_coords'] = conv_cartesian_to_pygame_coords(p1_rand_x, p1_rand_y)
-
-    p2_rand_x, p2_rand_y = random.randint(-400, 400), random.randint(-400, 400)
-    player_two['cartesian_coords'] = (p2_rand_x, p2_rand_y)
-    player_two['pygame_coords'] = conv_cartesian_to_pygame_coords(p2_rand_x, p2_rand_y)
-
-    dest_rand_x, dest_rand_y = random.randint(-400, 400), random.randint(-400, 400)
-    destination['cartesian_coords'] = (dest_rand_x, dest_rand_y)
-    destination['pygame_coords'] = conv_cartesian_to_pygame_coords(dest_rand_x, dest_rand_y)
 
 # Function to display coordinates on the Pygame window
 def display_coordinates(player_one_coords, player_two_coords, destination_coords, timer_text, current_turn):
@@ -84,28 +61,6 @@ def countdown_timer(start_time, time_limit):
     elapsed_time = time_limit - (pygame.time.get_ticks() - start_time) // 1000
     return max(0, elapsed_time)
 
-# Define players and destination
-player_one = {
-    'name': 'Player One',
-    'cartesian_coords': None,
-    'pygame_coords': None,
-    'colour': 'red',
-}
-
-player_two = {
-    'name': 'Player Two',
-    'cartesian_coords': None,
-    'pygame_coords': None,
-    'colour': 'blue',
-}
-
-destination = {
-    'name': 'Destination',
-    'cartesian_coords': None,
-    'pygame_coords': None,
-    'colour': 'black',
-}
-
 # Create Pygame window and initialise entities
 app_surf, app_surf_rect = create_app_window(800, 800)
 
@@ -113,33 +68,12 @@ current_turn = 1
 time_limit = 10  # Time limit for each turn in seconds
 start_time = 0
 
-# Initialize the game
-place_entities()  # Randomly place players and destination
-update_player_info()  # Update initial player information
-
-# Inform players about the game setup
-print("Welcome Lucas Wan's Cartesian Game")
-print("The game setup is as follows:")
-print(f"- Destination Location: {destination['coordinates']}")
-print(f"- Player One Starting Position: {player_one['coordinates']}")
-print(f"- Player Two Starting Position: {player_two['coordinates']}")
-print(f"- NPC (Player Three) Starting Position: {player_three['coordinates']}")
-print("Let's begin!\n")
-
-# Display initial game state
-print("Initial Game State:")
-print("Player One's Information:")
-print_player_info(player_one)
-print("\nPlayer Two's Information:")
-print_player_info(player_two)
-print("\nDestination Location:", destination['coordinates'])
-
 # Main game loop
-while True:
+running = True
+while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
+            running = False
     
     # Human Player One's Turn
     print("\nPlayer One's Turn:")
@@ -154,8 +88,6 @@ while True:
         print_player_info(player_one)
         print("\nPlayer Two's Information:")
         print_player_info(player_two)
-        print("\nNPC's Information:")
-        print_player_info(player_three)
         print("\nDestination Location:", destination['coordinates'])
         if check_winner(player_one):
             break
@@ -175,8 +107,6 @@ while True:
         print_player_info(player_one)
         print("\nPlayer Two's Information:")
         print_player_info(player_two)
-        print("\nNPC's Information:")
-        print_player_info(player_three)
         print("\nDestination Location:", destination['coordinates'])
         if check_winner(player_two):
             break
@@ -192,12 +122,9 @@ while True:
     print_player_info(player_one)
     print("\nPlayer Two's Information:")
     print_player_info(player_two)
-    print("\nNPC's Information:")
-    print_player_info(player_three)
     print("\nDestination Location:", destination['coordinates'])
     if check_winner(player_three):
         break
-
 
     # Switch turn if time limit is reached
     timer_text = countdown_timer(start_time, time_limit)
@@ -208,3 +135,7 @@ while True:
     # Update display
     app_surf_update(destination, player_one, player_two, timer_text, current_turn)
     refresh_window()
+
+# Quit Pygame properly when the loop ends
+pygame.quit()
+sys.exit()
