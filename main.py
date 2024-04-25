@@ -313,3 +313,8 @@ def refresh_window():
     pygame.display.update()
     app_clock.tick(24)
 
+def conv_cartesian_to_pygame_coords(x, y):
+    pygame_x = x + app_surf_rect.width / 2
+    pygame_y = -y + app_surf_rect.height / 2
+    return (pygame_x, pygame_y)
+
