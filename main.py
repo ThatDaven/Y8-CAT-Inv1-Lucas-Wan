@@ -161,13 +161,20 @@ def print_player_info(player):
 def check_winner(player):
     """
     Check if a player has reached the destination's personal space buffer.
+
     Args:
     - player (dict): The player dictionary containing coordinates and personal space buffer.
+
     Returns:
     - bool: True if the player has reached the destination's personal space buffer, False otherwise.
     """
     distance_to_destination = calculate_distance(player['coordinates'], destination['coordinates'])
-    return distance_to_destination <= player['personal_space_buffer']
+    if distance_to_destination <= player['personal_space_buffer']:
+        print("Player has reached the destination's personal space buffer.")
+        return True
+    else:
+        print("Player has not reached the destination's personal space buffer.")
+        return False
 
 # Part 3.2: Move players along the hypotenuse of a right-angled triangle
 def move_player(player, distance, direction):
@@ -195,6 +202,9 @@ def move_player(player, distance, direction):
     # Update player coordinates
     player['coordinates'][0] += translation[0]
     player['coordinates'][1] += translation[1]
+
+    # Print message about player movement
+    print(f"Player has moved by {translation} units.")
 
     return translation
 
