@@ -69,3 +69,24 @@ An example usage demonstrates how to move a player and update the game state acc
         actual_translation = move_player(player_one, move_distance, move_direction)
         print(f"Player One moved by {actual_translation}.")
         update_game_state()
+
+
+# Part 4.1 to 4.3
+4.1 You can use the time module to track the time taken by each player to make a move. If a player exceeds the time limit (e.g., 10 seconds), you can choose a random Pythagorean triple and direction for their move.
+4.2 To design an NPC algorithm for player three, we need to create a strategy that allows the NPC to make intelligent decisions based on the game state. Here's a plausible algorithm for player three:
+    Calculate Distance to Destination:
+        Determine the current distance between player three and the destination.
+    Evaluate Movement Options:
+        Analyze the available movement options for player three:
+    Check the distances along the hypotenuse of right-angled triangles to see which one brings the NPC closer to the destination.
+        Consider potential obstacles or other players' positions that might influence the NPC's movement.
+    hoose Optimal Move:
+        Select the movement option that minimizes the distance between player three and the destination.
+        If multiple options are equally good, prioritize moves that avoid collisions with obstacles or other players.
+    Execute Move:
+        Implement the chosen movement option by updating player three's position accordingly.
+    Update Game State:
+        After the NPC's move, update the game state to reflect the new positions of all players and any other relevant information.
+    Repeat:
+        Continue this process for each turn of the game, allowing the NPC to make decisions dynamically based on the evolving game state.
+4.3 You can use Pygame to create a visual representation of the Cartesian plane and the movement of players. Each player's position can be represented by a different color or shape on the screen. After each turn, update the display to show the new positions of the players.

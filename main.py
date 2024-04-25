@@ -235,3 +235,28 @@ def move_player_with_time_limit(player, distance, direction, time_limit=10): #Se
         translation = move_player(player, random_distance, random_direction) #This is the only function of the random library to give a random move. (besides generating random placements in earlier part 2.2)
 
     return translation
+
+import random
+import math
+
+# Define the NPC (player three) dictionary
+player_three = {
+    'coordinates': [0, 0],
+    'distance_to_destination': None,
+    'personal_space_buffer': 10
+}
+
+def calculate_distance(point1, point2):
+    """
+    Calculate the distance between two points on the Cartesian plane.
+    
+    Args:
+    - point1 (tuple): The coordinates of the first point (x1, y1).
+    - point2 (tuple): The coordinates of the second point (x2, y2).
+    
+    Returns:
+    - float: The distance between the two points.
+    """
+    x1, y1 = point1
+    x2, y2 = point2
+    return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)  # Euclidean distance formula
