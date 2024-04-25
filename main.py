@@ -286,4 +286,19 @@ def move_npc():
     print(f"NPC (Player Three) moved by {actual_translation}.")
 
 #Part 4.3: Visual Part:
+import pygame
+import sys
+import random
+
+pygame.init()
+app_clock = pygame.time.Clock()
+
+def create_app_window(width, height):
+    print(f'\nWelcome. The plane goes from -{width/2} to {width/2} in both the x and y directions')
+    pygame.display.set_caption("<App Name> TBD")
+    app_dimensions = (width + 10, height + 10)
+    app_surf = pygame.display.set_mode(app_dimensions)
+    app_surf_rect = app_surf.get_rect()
+    return app_surf, app_surf_rect
+
 
