@@ -308,6 +308,7 @@ def app_surf_update(destination, player_one, player_two):
     pygame.draw.circle(app_surf, 'black', destination['pygame_coords'], radius=3, width=3)
     pygame.draw.circle(app_surf, player_one['colour'], player_one['pygame_coords'], radius=3, width=2)
     pygame.draw.circle(app_surf, player_two['colour'], player_two['pygame_coords'], radius=3, width=2)
+    display_coordinates(player_one['pygame_coords'], player_two['pygame_coords'], destination['pygame_coords'])
 
 def refresh_window():
     pygame.display.update()
@@ -330,6 +331,15 @@ def initialise_entities():
     dest_rand_x, dest_rand_y = random.randint(-400, 400), random.randint(-400, 400)
     destination['cartesian_coords'] = (dest_rand_x, dest_rand_y)
     destination['pygame_coords'] = conv_cartesian_to_pygame_coords(dest_rand_x, dest_rand_y)
+
+def display_coordinates(player_one_coords, player_two_coords, destination_coords):
+    font = pygame.font.Font(None, 24)
+    player_one_text = font.render(f'Player One: {player_one_coords}', True, pygame.Color('black'))
+    player_two_text = font.render(f'Player Two: {player_two_coords}', True, pygame.Color('black'))
+    destination_text = font.render(f'Destination: {destination_coords}', True, pygame.Color('black'))
+    app_surf.blit(player_one_text, (20, 20))
+    app_surf.blit(player_two_text, (20, 50))
+    app_surf.blit(destination_text, (20, 80))
 
 player_one = {
     'name': 'Player One',
