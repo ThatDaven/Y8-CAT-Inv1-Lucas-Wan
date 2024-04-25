@@ -156,3 +156,17 @@ def print_player_info(player):
             print(f"Midpoint with Other Player: ({midpoint[0]}, {midpoint[1]})")
         else:
             print("No midpoint with other player")
+
+# Part 3.1: Use the personal space buffer to identify a winner
+def check_winner(player):
+    """
+    Check if a player has reached the destination's personal space buffer.
+
+    Args:
+    - player (dict): The player dictionary containing coordinates and personal space buffer.
+
+    Returns:
+    - bool: True if the player has reached the destination's personal space buffer, False otherwise.
+    """
+    distance_to_destination = calculate_distance(player['coordinates'], destination['coordinates'])
+    return distance_to_destination <= player['personal_space_buffer']
