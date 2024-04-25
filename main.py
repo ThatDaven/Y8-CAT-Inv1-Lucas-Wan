@@ -218,3 +218,20 @@ def update_game_state():
     else:
         print("No winner yet. Keep playing!")
 
+import time
+import random
+
+#Introducing a time penalty with time and random library functions
+def move_player_with_time_limit(player, distance, direction, time_limit=10): #Sets time limit at 10 seconds.
+    start_time = time.time()
+    translation = move_player(player, distance, direction)
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+
+    if elapsed_time > time_limit: #Checking if time limit is out
+        print("Player exceeded time limit. Choosing random move.") #Gives random moves to not disadvantage the player. Losing a turn is too harsh and too hard to code.
+        random_direction = random.randint(1, 8)
+        random_distance = random.randint(1, pythagorean_triples[random_direction - 1][2])
+        translation = move_player(player, random_distance, random_direction) #This is the only function of the random library to give a random move. (besides generating random placements in earlier part 2.2)
+
+    return translation
