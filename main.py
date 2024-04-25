@@ -197,3 +197,13 @@ def move_player(player, distance, direction):
     player['coordinates'][1] += translation[1]
 
     return translation
+
+# Update player information after each move
+def update_game_state():
+    update_player_info()  # Update player distances, midpoints, and gradients
+    if check_winner(player_one):
+        print("Player One has reached the destination and won!")
+    elif check_winner(player_two):
+        print("Player Two has reached the destination and won!")
+    else:
+        print("No winner yet. Keep playing!")
