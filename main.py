@@ -301,4 +301,15 @@ def create_app_window(width, height):
     app_surf_rect = app_surf.get_rect()
     return app_surf, app_surf_rect
 
+def app_surf_update(destination, player_one, player_two):
+    app_surf.fill('white')
+    pygame.draw.line(app_surf, 'grey', (0, app_surf_rect.height/2), (app_surf_rect.width, app_surf_rect.height/2), width=1)
+    pygame.draw.line(app_surf, 'grey', (app_surf_rect.width/2, 0), (app_surf_rect.width/2, app_surf_rect.height), width=1)
+    pygame.draw.circle(app_surf, 'black', destination['pygame_coords'], radius=3, width=3)
+    pygame.draw.circle(app_surf, player_one['colour'], player_one['pygame_coords'], radius=3, width=2)
+    pygame.draw.circle(app_surf, player_two['colour'], player_two['pygame_coords'], radius=3, width=2)
+
+def refresh_window():
+    pygame.display.update()
+    app_clock.tick(24)
 
