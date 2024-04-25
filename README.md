@@ -93,3 +93,19 @@ An example usage demonstrates how to move a player and update the game state acc
 
 4.3 You can use Pygame to create a visual representation of the Cartesian plane and the movement of players. Each player's position can be represented by a different color or shape on the screen. After each turn, update the display to show the new positions of the players.
     
+Implementing the game state:
+How I created the game using this selected code
+1. Defined the game's entities, directions, and the game's state
+(player_one, player_two, destination, game_state)
+2. Created functions to manipulate the game's state
+(place_entities, update_player_info, move_player, move_player_with_time_limit, update_game_state, check_winner, print_player_info)
+3. Created a game loop that alternates turns between the human players and the NPC
+(while True)
+4. Added input validation to prevent invalid directions and distances
+(if direction: and if distance:)
+5. Displayed the game state after each turn
+(print("\nUpdated Game State after [Player/NPC]'s Turn:"))
+6. Checked for a winner after each turn and ended the game if a winner is detected
+(if check_winner([player]): break)
+7. Finally, added some text-based user interface to make the game more interactive
+(input() and print() statements)
