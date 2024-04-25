@@ -302,14 +302,14 @@ def create_app_window(width, height):
     app_surf_rect = app_surf.get_rect()
     return app_surf, app_surf_rect
 
-def app_surf_update(destination, player_one, player_two, timer_text):
+def app_surf_update(destination, player_one, player_two, timer_text, current_turn):
     app_surf.fill('white')
     pygame.draw.line(app_surf, 'grey', (0, app_surf_rect.height/2), (app_surf_rect.width, app_surf_rect.height/2), width=1)
     pygame.draw.line(app_surf, 'grey', (app_surf_rect.width/2, 0), (app_surf_rect.width/2, app_surf_rect.height), width=1)
     pygame.draw.circle(app_surf, 'black', destination['pygame_coords'], radius=3, width=3)
     pygame.draw.circle(app_surf, player_one['colour'], player_one['pygame_coords'], radius=3, width=2)
     pygame.draw.circle(app_surf, player_two['colour'], player_two['pygame_coords'], radius=3, width=2)
-    display_coordinates(player_one['pygame_coords'], player_two['pygame_coords'], destination['pygame_coords'], timer_text)
+    display_coordinates(player_one['pygame_coords'], player_two['pygame_coords'], destination['pygame_coords'], timer_text, current_turn)
 
 def refresh_window():
     pygame.display.update()
@@ -333,16 +333,18 @@ def initialise_entities():
     destination['cartesian_coords'] = (dest_rand_x, dest_rand_y)
     destination['pygame_coords'] = conv_cartesian_to_pygame_coords(dest_rand_x, dest_rand_y)
 
-def display_coordinates(player_one_coords, player_two_coords, destination_coords, timer_text):
+def display_coordinates(player_one_coords, player_two_coords, destination_coords, timer_text, current_turn):
     font = pygame.font.Font(None, 24)
     player_one_text = font.render(f'Player One: {player_one_coords}', True, pygame.Color('black'))
     player_two_text = font.render(f'Player Two: {player_two_coords}', True, pygame.Color('black'))
     destination_text = font.render(f'Destination: {destination_coords}', True, pygame.Color('black'))
     timer = font.render(f'Time left: {timer_text}', True, pygame.Color('black'))
+    turn_text = font.render(f"Turn: Player {current_turn}", True, pygame.Color('black'))
     app_surf.blit(player_one_text, (20, 20))
     app_surf.blit(player_two_text, (20, 50))
     app_surf.blit(destination_text, (20, 80))
     app_surf.blit(timer, (20, 110))
+    app_surf.blit(turn_text, (20, 140))
 
 def switch_turn(current_turn):
     return 1 if current_turn == 2 else 2
@@ -350,6 +352,11 @@ def switch_turn(current_turn):
 def countdown_timer(start_time, time_limit):
     elapsed_time = time_limit - (pygame.time.get_ticks() - start_time) // 1000
     return max(0, elapsed_time)
+
+def random_move(player):
+    rand_x, rand_y = random.randint(-400, 400), random.randint(-400, 400)
+    player['cartesian_coords'] = (rand_x, rand_y)
+    player['pygame_coords'] = conv_cartesian_to_pygame_coords(rand_x, rand_y)
 
 player_one = {
     'name': 'Player One',
@@ -416,9 +423,16 @@ while True:
                     start_time = pygame.time.get_ticks()
     
     timer_text = countdown_timer(start_time, time_limit)
-    app_surf_update(destination, player_one, player_two, timer_text)
-    refresh_window()
     if timer_text == 0:
+        if current_turn == 1:
+            random_move(player_one)
+        else:
+            random_move(player_two)
         current_turn = switch_turn(current_turn)
+        start_time = pygame.time.get_ticks()
+
+    app_surf_update(destination, player_one, player_two, timer_text, current_turn)
+    refresh_window()
+
 
 
