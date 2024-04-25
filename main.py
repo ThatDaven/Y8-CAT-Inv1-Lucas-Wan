@@ -221,6 +221,7 @@ def update_game_state():
 import time
 import random
 
+#Part 4.1 to 4.2
 #Introducing a time penalty with time and random library functions
 def move_player_with_time_limit(player, distance, direction, time_limit=10): #Sets time limit at 10 seconds.
     start_time = time.time()
@@ -284,5 +285,5 @@ def move_npc():
     actual_translation = move_player(player_three, min_distance, optimal_move)
     print(f"NPC (Player Three) moved by {actual_translation}.")
 
-# Example usage of moving the NPC
-move_npc()
+#Part 4.3: Visual Part:
+
